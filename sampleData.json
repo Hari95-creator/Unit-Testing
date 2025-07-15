@@ -1,0 +1,39 @@
+{
+  "products": [
+    {
+      "pName": "Wireless Mouse",
+      "pCategory": "Electronics",
+      "pPrice": 799.99,
+      "pDesc": "Ergonomic wireless mouse with 2.4 GHz USB receiver",
+      "pStock": 120
+    },
+    {
+      "pName": "Bluetooth Headphones",
+      "pCategory": "Audio",
+      "pPrice": 1499.50,
+      "pDesc": "Over-ear headphones with noise cancellation and mic",
+      "pStock": 75
+    },
+    {
+      "pName": "Gaming Keyboard",
+      "pCategory": "Electronics",
+      "pPrice": 2499.00,
+      "pDesc": "Mechanical RGB keyboard with programmable keys",
+      "pStock": 60
+    },
+    {
+      "pName": "Smart Watch",
+      "pCategory": "Wearables",
+      "pPrice": 3499.90,
+      "pDesc": "Fitness tracking smartwatch with heart rate monitor",
+      "pStock": 200
+    },
+    {
+      "pName": "USB-C Charger",
+      "pCategory": "Accessories",
+      "pPrice": 699.00,
+      "pDesc": "Fast charging USB-C wall adapter with PD support",
+      "pStock": 150
+    }
+  ]
+}
