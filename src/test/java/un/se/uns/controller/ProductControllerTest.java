@@ -35,14 +35,6 @@ class ProductControllerTest {
 
         System.out.println("Before All the Test cases");
     }
-
-    @AfterAll
-    public static void Destory() {
-
-        System.out.println("It will execute only once ,After all the Test cases, for example we destroy Db Connection ");
-
-    }
-
     //@BeforeEach runs before every test method, and is used to set up test data, mocks, or environment needed for that test
     @BeforeEach
     public void initForEachTestCases() {
@@ -85,6 +77,12 @@ class ProductControllerTest {
     }
 
     //@AfterAll @AfterEach cleanup level
+    @AfterAll
+    public static void Destory() {
+
+        System.out.println("It will execute only once ,After all the Test cases, for example we destroy Db Connection ");
+
+    }
     @AfterEach
     public void cleanUp() {
 

@@ -60,9 +60,16 @@ public class ProductService {
 
         try {
 
-            productRepository.save(product);
+            boolean validateResult = this.validateProduct(product.getProductName());
 
-            addingData.put("msg", "success");
+            if (validateResult) {
+
+                productRepository.save(product);
+
+                addingData.put("msg", "success");
+            } else {
+                throw new RuntimeException("Product Details cant be add");
+            }
 
 
         } catch (Exception e) {
@@ -76,5 +83,14 @@ public class ProductService {
     public void deleteProduct(int productId){
 
         productRepository.deleteByProductId(productId);
+    }
+
+    private boolean validateProduct(String productName){
+
+        if (productName.isBlank() || productName.isEmpty()){
+            return false;
+        }
+
+        return true;
     }
 }

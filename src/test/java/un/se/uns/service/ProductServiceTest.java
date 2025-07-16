@@ -9,6 +9,8 @@ import org.mockito.junit.jupiter.MockitoExtension;
 import un.se.uns.Entity.Product;
 import un.se.uns.Repository.ProductRepository;
 
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
 import java.math.BigDecimal;
 import java.util.Date;
 import java.util.HashMap;
@@ -35,14 +37,6 @@ class ProductServiceTest {
 
         System.out.println("Before All the Test cases");
     }
-
-    @AfterAll
-    public static void Destory() {
-
-        System.out.println("It will execute only once ,After all the Test cases, for example we destroy Db Connection ");
-
-    }
-
     //@BeforeEach runs before every test method, and is used to set up test data, mocks, or environment needed for that test
     @BeforeEach
     public void initForEachTestCases() {
@@ -85,6 +79,41 @@ class ProductServiceTest {
         System.out.println("My First Test");
     }
 
+    //Here private method in service can be tested using java reflections
+    @Test
+    void validatePrivateMethod() throws NoSuchMethodException, InvocationTargetException, IllegalAccessException {
+
+        // these are the way to access private method in class using java reflections
+        //here validateProduct is method name in product service class
+        //in getDeclaredMethod it has two parameter one is mehtod name and second one argument type
+        // which used in that particular method
+
+        Method validateMethod = ProductService.class.getDeclaredMethod("validateProduct", String.class);
+
+        validateMethod.setAccessible(true);
+        Boolean productName = (Boolean) validateMethod.invoke(productService, "Headphone");
+
+        assertTrue(productName);
+
+    }
+
+    @Test
+    void validateNegativeCasePrivateMethod() throws NoSuchMethodException, InvocationTargetException, IllegalAccessException {
+
+        // these are the way to access private method in class using java reflections
+        //here validateProduct is method name in product service class
+        //in getDeclaredMethod it has two parameter one is mehtod name and second one argument type
+        // which used in that particular method
+
+        Method validateMethod = ProductService.class.getDeclaredMethod("validateProduct", String.class);
+
+        validateMethod.setAccessible(true);
+        Boolean productName = (Boolean) validateMethod.invoke(productService, "");
+
+        assertFalse(productName);
+
+    }
+
     // Here, doNothing() is used when the method return type is void,
     // and we want to test whether the method was executed as expected.
     // Common use cases include delete and update operations where no return value is expected.
@@ -102,6 +131,12 @@ class ProductServiceTest {
     public void cleanUp() {
 
         System.out.println("It is used for resetting the values after each test cases performed");
+    }
+    @AfterAll
+    public static void Destory() {
+
+        System.out.println("It will execute only once ,After all the Test cases, for example we destroy Db Connection ");
+
     }
 
 }
