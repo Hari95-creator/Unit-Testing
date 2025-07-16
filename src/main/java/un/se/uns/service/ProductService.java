@@ -72,4 +72,9 @@ public class ProductService {
 
         return addingData;
     }
+
+    public void deleteProduct(int productId){
+
+        productRepository.deleteByProductId(productId);
+    }
 }
